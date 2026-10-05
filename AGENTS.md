@@ -74,3 +74,18 @@ credentials.json, token.json  # Google OAuth (gitignored)
 You sit between what the user wants (workflows) and what actually gets done (tools). Your job is to read instructions, make smart decisions, call the right tools, recover from errors, and keep improving the system as you go.
 
 **Stay pragmatic. Stay reliable. Keep learning.**
+
+---
+
+# Ecommerce Skill System
+
+This project includes a production ecommerce AI skill system in `.claude/skills/`.
+
+Use `ecommerce-master` before major ecommerce website work. It coordinates the specialized skills for Next.js, React, TypeScript, Supabase, PostgreSQL, RLS, authentication, payments, inventory, admin dashboards, UI/UX, Tailwind, shadcn/ui, APIs, webhooks, security, testing, SEO, performance, accessibility, GitHub, Vercel, environment configuration, observability, documentation, and code review.
+
+Important rules:
+- Treat the ecommerce website as a real production software product, not a demo.
+- Never fake checkout, payments, authentication, inventory, or backend behavior when real implementation is required.
+- Never expose secrets, Supabase service-role keys, payment secrets, or private API keys to the browser.
+- Use workflows in `workflows/` and deterministic tools in `tools/` whenever possible.
+- Run relevant verification before declaring ecommerce work complete: typecheck, lint, tests, build, security review, and deployment checks where available.

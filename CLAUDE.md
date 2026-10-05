@@ -39,7 +39,6 @@ Each skill should use this pattern:
 
 Skills to build later:
 
-- Ecommerce website planning and build support
 - Customer inquiry to follow-up to sale
 - WhatsApp customer response templates
 - Product promotion workflow
@@ -47,6 +46,8 @@ Skills to build later:
 - Combo offer creation
 - Order tracking
 - Daily task management
+
+Production ecommerce website skills are already installed in `.claude/skills/`. Use `ecommerce-master` to coordinate serious ecommerce website work.
 
 ## Decision Log
 
