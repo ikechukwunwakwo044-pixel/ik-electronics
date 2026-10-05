@@ -1,0 +1,41 @@
+# Temporary files & disposable intermediates
+.tmp/
+*.tmp
+*.temp
+
+# Secrets and environment variables (NEVER commit secrets!)
+.env
+.env*.local
+!.env.example
+CLAUDE.local.md
+.claude/settings.local.json
+
+# Google OAuth credentials & tokens
+credentials.json
+token.json
+
+# Python cache & virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+venv/
+ENV/
+env/
+build/
+node_modules/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
