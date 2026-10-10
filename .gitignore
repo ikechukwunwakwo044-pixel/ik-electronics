@@ -3,6 +3,14 @@
 *.tmp
 *.temp
 
+# Next.js build output & package-manager stores
+.next/
+out/
+.pnpm-store/
+.vercel/
+next-env.d.ts
+*.tsbuildinfo
+
 # Secrets and environment variables (NEVER commit secrets!)
 .env
 .env*.local
