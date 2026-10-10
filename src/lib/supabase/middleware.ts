@@ -26,7 +26,11 @@ export async function updateSession(request: NextRequest) {
     },
   });
 
-  await supabase.auth.getClaims();
+  try {
+    await supabase.auth.getClaims();
+  } catch (error) {
+    console.error('Failed to get claims in middleware:', error);
+  }
 
   return supabaseResponse;
 }
