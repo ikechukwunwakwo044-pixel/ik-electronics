@@ -1,24 +1,24 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fafaf9;
-  --foreground: #0c0a09;
+  --background: #f7f9ff;
+  --foreground: #101828;
   --card: #ffffff;
-  --card-foreground: #0c0a09;
-  --primary: #1c1917;
+  --card-foreground: #101828;
+  --primary: #155eef;
   --primary-foreground: #ffffff;
-  --secondary: #44403c;
+  --secondary: #0b3b9e;
   --secondary-foreground: #ffffff;
-  --muted: #e8ecf0;
+  --muted: #eaf0ff;
   --muted-foreground: #475569;
-  --accent: #a16207;
-  --accent-foreground: #ffffff;
+  --accent: #f79009;
+  --accent-foreground: #101828;
   --destructive: #dc2626;
   --destructive-foreground: #ffffff;
-  --border: #d6d3d1;
-  --input: #d6d3d1;
-  --ring: #1c1917;
-  --radius: 0.625rem;
+  --border: #d0d5dd;
+  --input: #d0d5dd;
+  --ring: #155eef;
+  --radius: 0.5rem;
 }
 
 @theme inline {
@@ -58,13 +58,12 @@ body {
 }
 
 ::selection {
-  background: rgba(161, 98, 7, 0.22);
+  background: rgba(21, 94, 239, 0.2);
 }
 
-.glass-panel {
-  background: rgba(255, 255, 255, 0.74);
-  backdrop-filter: blur(22px);
-  box-shadow: 0 24px 70px rgba(28, 25, 23, 0.12);
+.brand-grid {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
 @media (prefers-reduced-motion: reduce) {

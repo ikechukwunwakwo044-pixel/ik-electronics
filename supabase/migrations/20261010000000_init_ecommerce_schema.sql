@@ -3,8 +3,8 @@
 -- Migration: 20261010000000_init_ecommerce_schema.sql
 -- ==============================================================================
 
--- Enable UUID extension
-create extension if not exists "uuid-ossp";
+-- Enable UUID generation used by default column values.
+create extension if not exists pgcrypto;
 
 -- ------------------------------------------------------------------------------
 -- 1. CATEGORIES TABLE
@@ -208,7 +208,7 @@ end;
 $$ language plpgsql security definer stable set search_path = public, auth;
 
 revoke all on function public.is_admin() from public;
-grant execute on function public.is_admin() to authenticated;
+grant execute on function public.is_admin() to anon, authenticated;
 
 -- ==============================================================================
 -- ROW LEVEL SECURITY (RLS) POLICIES
