@@ -60,22 +60,30 @@ export function ProductCard({ product }: { product: Product }) {
 
         <div className="mt-auto flex items-end justify-between gap-3 pt-1">
           <div className="flex flex-col">
-            <p className="text-xl font-extrabold tracking-tight">{formatCurrency(price)}</p>
-            {compareAt != null && compareAt > price ? (
-              <p className="text-xs text-muted-foreground line-through">{formatCurrency(compareAt)}</p>
-            ) : null}
+            {price > 0 ? (
+              <>
+                <p className="text-xl font-extrabold tracking-tight">{formatCurrency(price)}</p>
+                {compareAt != null && compareAt > price ? (
+                  <p className="text-xs text-muted-foreground line-through">{formatCurrency(compareAt)}</p>
+                ) : null}
+              </>
+            ) : (
+              <p className="text-lg font-extrabold tracking-tight text-primary">Price on request</p>
+            )}
           </div>
-          <AddToCart
-            product={{
-              id: product.id,
-              name: product.name,
-              slug: product.slug,
-              price,
-              compareAtPrice: compareAt,
-              image,
-              stockQuantity: product.stock_quantity,
-            }}
-          />
+          {price > 0 ? (
+            <AddToCart
+              product={{
+                id: product.id,
+                name: product.name,
+                slug: product.slug,
+                price,
+                compareAtPrice: compareAt,
+                image,
+                stockQuantity: product.stock_quantity,
+              }}
+            />
+          ) : null}
         </div>
 
         <Button asChild variant="ghost" size="sm" className="justify-between px-2 text-primary hover:bg-muted">

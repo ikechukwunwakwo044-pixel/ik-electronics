@@ -101,31 +101,41 @@ export default async function ProductDetailPage({
           </div>
 
           <div className="flex flex-wrap items-end gap-3">
-            <p className="text-4xl font-black tracking-tight">{formatCurrency(price)}</p>
-            {compareAt != null && compareAt > price ? (
+            {price > 0 ? (
               <>
-                <p className="pb-1 text-lg text-muted-foreground line-through">
-                  {formatCurrency(compareAt)}
-                </p>
-                <Badge className="border-transparent bg-accent/20 text-accent-foreground">
-                  Save {discount}%
-                </Badge>
+                <p className="text-4xl font-black tracking-tight">{formatCurrency(price)}</p>
+                {compareAt != null && compareAt > price ? (
+                  <>
+                    <p className="pb-1 text-lg text-muted-foreground line-through">
+                      {formatCurrency(compareAt)}
+                    </p>
+                    <Badge className="border-transparent bg-accent/20 text-accent-foreground">
+                      Save {discount}%
+                    </Badge>
+                  </>
+                ) : null}
               </>
-            ) : null}
+            ) : (
+              <p className="text-3xl font-black tracking-tight text-primary">
+                Price on request
+              </p>
+            )}
           </div>
 
           <div className="flex flex-col gap-3 sm:flex-row">
-            <AddToCart
-              product={{
-                id: product.id,
-                name: product.name,
-                slug: product.slug,
-                price,
-                compareAtPrice: compareAt,
-                image: images[0],
-                stockQuantity: product.stock_quantity,
-              }}
-            />
+            {price > 0 ? (
+              <AddToCart
+                product={{
+                  id: product.id,
+                  name: product.name,
+                  slug: product.slug,
+                  price,
+                  compareAtPrice: compareAt,
+                  image: images[0],
+                  stockQuantity: product.stock_quantity,
+                }}
+              />
+            ) : null}
             {whatsappNumber ? (
               <WhatsAppLink
                 number={whatsappNumber}
