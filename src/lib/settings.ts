@@ -1,6 +1,11 @@
 import { createAdminClient } from "@/lib/supabase/admin";
 
 export async function getWhatsappNumber(): Promise<string | null> {
+  const fallback = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.trim();
+  if (fallback) {
+    return fallback;
+  }
+
   try {
     const supabase = createAdminClient();
     const { data } = await supabase
