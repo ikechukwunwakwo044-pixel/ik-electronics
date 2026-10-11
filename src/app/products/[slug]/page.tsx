@@ -1,9 +1,11 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { AddToCart } from "@/components/add-to-cart";
+import { WhatsAppLink } from "@/components/whatsapp-link";
 import { getProduct } from "@/lib/data/products";
+import { getWhatsappNumber } from "@/lib/settings";
 import { formatCurrency } from "@/lib/utils";
 
 export default async function ProductDetailPage({
@@ -12,7 +14,7 @@ export default async function ProductDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const product = await getProduct(slug);
+  const [product, whatsappNumber] = await Promise.all([getProduct(slug), getWhatsappNumber()]);
 
   if (!product) {
     notFound();
@@ -46,8 +48,22 @@ export default async function ProductDetailPage({
           ) : null}
         </div>
         <div className="flex flex-col gap-3 sm:flex-row">
-          <Button size="lg" variant="accent">Add to cart</Button>
-          <Button size="lg" variant="outline">Ask on WhatsApp</Button>
+          <AddToCart
+            product={{
+              id: product.id,
+              name: product.name,
+              slug: product.slug,
+              price: Number(product.price),
+              compareAtPrice: product.compare_at_price != null ? Number(product.compare_at_price) : null,
+              image,
+              stockQuantity: product.stock_quantity,
+            }}
+          />
+          {whatsappNumber ? (
+            <WhatsAppLink number={whatsappNumber} message={`Hello IK Electronics and Gadgets, I would like to enquire about: ${product.name}`}>
+              Ask on WhatsApp
+            </WhatsAppLink>
+          ) : null}
         </div>
         {specs.length > 0 ? (
           <Card>

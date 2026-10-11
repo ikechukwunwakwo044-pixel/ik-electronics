@@ -1,7 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, ShoppingBag, UserRound } from "lucide-react";
+import { UserRound } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { CartButton } from "@/components/cart-button";
+import { MobileMenu } from "@/components/mobile-menu";
 import { createClient } from "@/lib/supabase/server";
 
 export async function SiteHeader() {
@@ -41,12 +43,8 @@ export async function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Button variant="ghost" size="icon" aria-label="Open navigation" className="md:hidden">
-            <Menu aria-hidden="true" />
-          </Button>
-          <Button variant="ghost" size="icon" aria-label="Cart">
-            <ShoppingBag data-icon="inline-start" />
-          </Button>
+          <MobileMenu />
+          <CartButton />
           <Button asChild variant={user ? "outline" : "default"} size="sm">
             <Link href={user ? "/account" : "/login"}>
               <UserRound data-icon="inline-start" />

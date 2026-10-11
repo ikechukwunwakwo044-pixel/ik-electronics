@@ -1,7 +1,9 @@
 # Temporary files & disposable intermediates
 .tmp/
+temp-nextapp/
 *.tmp
 *.temp
+next-start.log
 
 # Next.js build output & package-manager stores
 .next/
