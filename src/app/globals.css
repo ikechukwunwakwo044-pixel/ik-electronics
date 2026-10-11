@@ -1,23 +1,23 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f7f9ff;
-  --foreground: #101828;
-  --card: #ffffff;
-  --card-foreground: #101828;
-  --primary: #155eef;
+  --background: #faf6ed;
+  --foreground: #2b2318;
+  --card: #fffdf8;
+  --card-foreground: #2b2318;
+  --primary: #c2410c;
   --primary-foreground: #ffffff;
-  --secondary: #0b3b9e;
-  --secondary-foreground: #ffffff;
-  --muted: #eaf0ff;
-  --muted-foreground: #475569;
-  --accent: #f79009;
-  --accent-foreground: #101828;
-  --destructive: #dc2626;
+  --secondary: #2b2318;
+  --secondary-foreground: #faf5ec;
+  --muted: #f1e8d8;
+  --muted-foreground: #6e5c45;
+  --accent: #d97706;
+  --accent-foreground: #1f1a12;
+  --destructive: #c0392b;
   --destructive-foreground: #ffffff;
-  --border: #d0d5dd;
-  --input: #d0d5dd;
-  --ring: #155eef;
+  --border: #e4d7c0;
+  --input: #d9c9b0;
+  --ring: #c2410c;
   --radius: 0.5rem;
 }
 
@@ -58,12 +58,43 @@ body {
 }
 
 ::selection {
-  background: rgba(21, 94, 239, 0.2);
+  background: rgba(194, 65, 12, 0.2);
 }
 
 .brand-grid {
   background-image: linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
   background-size: 32px 32px;
+}
+
+.text-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hero-grid {
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(194, 65, 12, 0.14) 1px, transparent 0);
+  background-size: 26px 26px;
+}
+
+.paper-fade {
+  background: linear-gradient(180deg, transparent, var(--background));
+}
+
+.block-brush {
+  position: relative;
+}
+
+.block-brush::before {
+  content: "";
+  position: absolute;
+  inset: 0 10% 0 0;
+  background: rgba(217, 119, 6, 0.12);
+  transform: rotate(-1.2deg);
+  border-radius: 0.75rem;
+  pointer-events: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

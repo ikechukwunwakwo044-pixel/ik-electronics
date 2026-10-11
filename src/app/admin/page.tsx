@@ -26,32 +26,33 @@ export default async function AdminPage() {
     redirect("/account");
   }
 
-  const [{ count: products }, { count: orders }, { count: lowStock }] = await Promise.all([
+  const [{ count: products }, { count: published }, { count: lowStock }] = await Promise.all([
     supabase.from("products").select("id", { count: "exact", head: true }),
-    supabase.from("orders").select("id", { count: "exact", head: true }),
+    supabase.from("products").select("id", { count: "exact", head: true }).eq("is_published", true),
     supabase.from("products").select("id", { count: "exact", head: true }).lte("stock_quantity", 5),
   ]);
 
   return (
     <main className="mx-auto flex max-w-7xl flex-col gap-8 px-4 py-12 sm:px-6 lg:px-8">
       <div>
-        <h1 className="font-display text-5xl font-semibold">Admin dashboard</h1>
+        <p className="text-eyebrow text-primary">Storefront admin</p>
+        <h1 className="mt-2 font-display text-5xl font-extrabold tracking-tight">Admin dashboard</h1>
         <p className="mt-3 text-muted-foreground">
-          Manage product visibility, stock, orders, and sales operations.
+          Welcome{profile.full_name ? ` back, ${profile.full_name}` : ""}. Product catalogue at a glance.
         </p>
       </div>
       <div className="grid gap-5 md:grid-cols-3">
         {[
-          ["Products", products ?? 0],
-          ["Orders", orders ?? 0],
-          ["Low stock", lowStock ?? 0],
+          ["Total products", products ?? 0],
+          ["Published", published ?? 0],
+          ["Low stock (≤ 5)", lowStock ?? 0],
         ].map(([label, value]) => (
           <Card key={label}>
             <CardHeader>
-              <CardTitle>{label}</CardTitle>
+              <CardTitle className="text-lg">{label}</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-4xl font-bold">{value}</p>
+              <p className="text-4xl font-black tracking-tight">{value}</p>
             </CardContent>
           </Card>
         ))}

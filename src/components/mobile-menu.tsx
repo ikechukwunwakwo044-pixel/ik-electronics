@@ -6,9 +6,11 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const links = [
-  { href: "/products", label: "Products" },
+  { href: "/products", label: "Shop products" },
+  { href: "/#categories", label: "Categories" },
   { href: "/#combos", label: "Combo deals" },
-  { href: "/admin", label: "Admin" },
+  { href: "/#contact", label: "Contact us" },
+  { href: "/login", label: "Sign in / Account" },
 ];
 
 export function MobileMenu() {

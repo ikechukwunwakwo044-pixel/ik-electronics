@@ -7,7 +7,13 @@ import { formatCurrency } from "@/lib/utils";
 
 type AddToCartProduct = Omit<CartLineItem, "quantity">;
 
-export function AddToCart({ product }: { product: AddToCartProduct }) {
+export function AddToCart({
+  product,
+  size = "default",
+}: {
+  product: AddToCartProduct;
+  size?: "default" | "sm" | "lg" | "icon";
+}) {
   const { addItem } = useCart();
   const [added, setAdded] = React.useState(false);
   const outOfStock = product.stockQuantity <= 0;
@@ -23,7 +29,7 @@ export function AddToCart({ product }: { product: AddToCartProduct }) {
   }
 
   return (
-    <Button size="lg" variant="accent" onClick={handleAdd} disabled={outOfStock} aria-live="polite">
+    <Button size={size} onClick={handleAdd} disabled={outOfStock} aria-live="polite" className={outOfStock ? "" : "bg-primary text-primary-foreground hover:bg-[#9a3412]"}>
       {outOfStock
         ? "Check availability"
         : added

@@ -5,11 +5,11 @@ import { buildWhatsAppUrl } from "@/lib/settings";
 export function WhatsAppLink({
   number,
   message,
-  children,
+  children = "Message us on WhatsApp",
 }: {
   number: string;
   message: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }) {
   return (
     <Button asChild variant="outline" size="lg">

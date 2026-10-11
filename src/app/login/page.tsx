@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { redirect } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -26,10 +27,17 @@ export default function LoginPage() {
   return (
     <main className="mx-auto flex min-h-[72vh] max-w-md items-center px-4 py-12">
       <Card className="w-full">
-        <CardHeader>
-          <CardTitle className="font-display text-4xl">Sign in</CardTitle>
+        <CardHeader className="items-center gap-3 text-center">
+          <Image
+            src="/ik-electronics-logo.jpeg"
+            alt="IK Electronics and Gadgets"
+            width={56}
+            height={56}
+            className="size-14 rounded-lg border border-border object-cover"
+          />
+          <CardTitle className="font-display text-4xl font-extrabold tracking-tight">Sign in</CardTitle>
           <CardDescription>
-            Use your Google account to manage orders and access your account.
+            Use your Google account to access your IK Electronics account.
           </CardDescription>
         </CardHeader>
         <CardContent>

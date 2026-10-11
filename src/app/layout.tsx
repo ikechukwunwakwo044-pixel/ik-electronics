@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Montserrat } from "next/font/google";
+import { Archivo, Work_Sans } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/lib/cart";
 import { SiteHeader } from "@/components/site-header";
+import SiteFooter from "@/components/site-footer";
 
-const display = Cormorant_Garamond({
+const display = Archivo({
   subsets: ["latin"],
   variable: "--font-display",
-  weight: ["500", "600", "700"],
+  weight: ["500", "600", "700", "800", "900"],
 });
 
-const sans = Montserrat({
+const sans = Work_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
   weight: ["400", "500", "600", "700"],
@@ -22,11 +23,11 @@ export const metadata: Metadata = {
     template: "%s | IK Electronics",
   },
   description:
-    "Shop electronics, TVs, kitchen appliances, home entertainment, gadgets, and office equipment from IK Electronics and Gadgets.",
+    "Buy genuine TVs, sound systems, kitchen appliances, gadgets and office equipment from IK Electronics and Gadgets. Honest prices, delivery across Nigeria.",
   openGraph: {
     title: "IK Electronics and Gadgets",
     description:
-      "Premium electronics, appliances, gadgets, and combo deals for homes and offices.",
+      "Genuine electronics, home appliances and gadgets at fair prices, with delivery across Nigeria.",
     type: "website",
   },
 };
@@ -41,7 +42,10 @@ export default function RootLayout({
       <body className={`${display.variable} ${sans.variable} antialiased`}>
         <CartProvider>
           <SiteHeader />
-          {children}
+          <div className="flex min-h-screen flex-col">
+            <div className="flex-1">{children}</div>
+            <SiteFooter />
+          </div>
         </CartProvider>
       </body>
     </html>

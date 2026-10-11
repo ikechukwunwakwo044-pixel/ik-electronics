@@ -20,12 +20,17 @@ export default async function AccountPage() {
     <main className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
       <Card>
         <CardHeader>
-          <CardTitle className="font-display text-4xl">Your account</CardTitle>
+          <CardTitle className="font-display text-4xl font-extrabold tracking-tight">
+            Your account
+          </CardTitle>
         </CardHeader>
         <CardContent className="grid gap-3 text-sm">
-          <p>
-            <span className="font-semibold">Email:</span> {user.email}
-          </p>
+          <div className="rounded-lg border bg-muted px-4 py-3">
+            <p className="font-semibold">{user.email}</p>
+            <p className="mt-0.5 text-xs text-muted-foreground">
+              {user.user_metadata?.name ?? "Signed in"}
+            </p>
+          </div>
           <p className="text-muted-foreground">
             Order history and saved addresses will appear here as checkout is completed.
           </p>

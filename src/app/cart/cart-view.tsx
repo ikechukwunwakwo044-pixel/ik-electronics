@@ -47,11 +47,11 @@ export function CartView({ whatsappNumber }: { whatsappNumber: string | null }) 
         {items.map((item) => (
           <Card key={item.id}>
             <CardContent className="flex gap-4 p-4">
-              <div className="relative aspect-square w-24 shrink-0 overflow-hidden rounded-md bg-muted">
+              <div className="relative aspect-square w-24 shrink-0 overflow-hidden rounded-md bg-[#f3eada]">
                 <Image src={item.image ?? "/placeholder-product.svg"} alt={item.name} fill sizes="96px" className="object-cover" />
               </div>
               <div className="flex flex-1 flex-col gap-2">
-                <Link href={`/products/${item.slug}`} className="font-semibold hover:underline">
+                <Link href={`/products/${item.slug}`} className="font-display text-lg font-bold leading-snug transition-colors hover:text-primary">
                   {item.name}
                 </Link>
                 <p className="text-sm font-bold">{formatCurrency(item.price)}</p>
@@ -96,7 +96,7 @@ export function CartView({ whatsappNumber }: { whatsappNumber: string | null }) 
 
       <Card className="h-fit">
         <CardContent className="flex flex-col gap-4 p-6">
-          <h2 className="text-lg font-semibold">Order summary</h2>
+          <h2 className="font-display text-lg font-bold">Order summary</h2>
           <div className="flex items-center justify-between text-sm">
             <span className="text-muted-foreground">Items ({itemCount})</span>
             <span className="font-semibold">{formatCurrency(subtotal)}</span>
@@ -116,6 +116,11 @@ export function CartView({ whatsappNumber }: { whatsappNumber: string | null }) 
               Online checkout is being set up. Please check back shortly.
             </p>
           )}
+          {whatsappNumber ? (
+            <p className="text-xs text-muted-foreground">
+              We&apos;ll confirm price, stock and delivery on WhatsApp before your order ships.
+            </p>
+          ) : null}
           <Button variant="ghost" onClick={clear} className="text-muted-foreground">
             Clear cart
           </Button>
