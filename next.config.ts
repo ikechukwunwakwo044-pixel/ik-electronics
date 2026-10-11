@@ -1,5 +1,4 @@
 import type { NextConfig } from "next";
-import path from "node:path";
 
 const nextConfig: NextConfig = {
   images: {
@@ -13,11 +12,6 @@ const nextConfig: NextConfig = {
         hostname: "images.unsplash.com",
       },
     ],
-  },
-  webpack: (config) => {
-    // Webpack aliases must be absolute for Vercel's build workspace.
-    config.resolve.alias["@"] = path.resolve(process.cwd(), "src");
-    return config;
   },
 };
 
