@@ -1,15 +1,16 @@
-export type SessionCookie = {
-  name: "ik_admin_session";
-  value: string;
-};
+export const SESSION_COOKIE_NAME = "ik_admin_session";
 
-const SESSION_NAME = "ik_admin_session" as const;
-const SESSION_MARKER = "ik_admin_authorized_v1" as const;
-
-export function sessionCookieMeta(): SessionCookie {
-  return { name: SESSION_NAME, value: SESSION_MARKER };
+export async function expectedSessionValue(): Promise<string> {
+  const password = process.env.ADMIN_PASSWORD ?? "";
+  const bytes = new TextEncoder().encode(`ik_admin_session_v1:${password}`);
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest))
+    .map((byte) => byte.toString(16).padStart(2, "0"))
+    .join("");
 }
 
-export function isSessionValue(value: string | undefined): boolean {
-  return value === SESSION_MARKER;
+export async function isSessionValid(value: string | undefined): Promise<boolean> {
+  if (!value) return false;
+  const expected = await expectedSessionValue();
+  return value === expected;
 }

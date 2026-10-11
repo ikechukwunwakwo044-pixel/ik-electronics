@@ -2,7 +2,7 @@ import Link from "next/link";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { Boxes, LayoutDashboard, LogOut, PackageCheck, Tags } from "lucide-react";
-import { isSessionValue, sessionCookieMeta } from "@/lib/auth";
+import { isSessionValid, SESSION_COOKIE_NAME } from "@/lib/auth";
 import { signOut } from "@/lib/auth-actions";
 
 const navItems = [
@@ -17,7 +17,7 @@ export default async function DashboardLayout({
   children: React.ReactNode;
 }>) {
   const cookieStore = await cookies();
-  if (!isSessionValue(cookieStore.get(sessionCookieMeta().name)?.value)) {
+  if (!(await isSessionValid(cookieStore.get(SESSION_COOKIE_NAME)?.value))) {
     redirect("/");
   }
 

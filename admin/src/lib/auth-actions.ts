@@ -3,7 +3,7 @@
 import { createHash, timingSafeEqual } from "node:crypto";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { sessionCookieMeta } from "@/lib/auth";
+import { SESSION_COOKIE_NAME, expectedSessionValue } from "@/lib/auth";
 
 function verifyPassword(input: string): boolean {
   const expected = process.env.ADMIN_PASSWORD;
@@ -23,9 +23,9 @@ export async function signIn(formData: FormData) {
     redirect("/?error=invalid");
   }
 
-  const meta = sessionCookieMeta();
+  const value = await expectedSessionValue();
   const cookieStore = await cookies();
-  cookieStore.set(meta.name, meta.value, {
+  cookieStore.set(SESSION_COOKIE_NAME, value, {
     httpOnly: true,
     sameSite: "lax",
     secure: true,
@@ -37,8 +37,7 @@ export async function signIn(formData: FormData) {
 }
 
 export async function signOut() {
-  const meta = sessionCookieMeta();
   const cookieStore = await cookies();
-  cookieStore.delete(meta.name);
+  cookieStore.delete(SESSION_COOKIE_NAME);
   redirect("/");
 }

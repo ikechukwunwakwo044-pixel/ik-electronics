@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { isSessionValue, sessionCookieMeta } from "@/lib/auth";
+import { isSessionValid, SESSION_COOKIE_NAME } from "@/lib/auth";
 
-export function middleware(request: NextRequest) {
-  const session = request.cookies.get(sessionCookieMeta().name)?.value;
-  const authed = isSessionValue(session);
+export async function middleware(request: NextRequest) {
+  const session = request.cookies.get(SESSION_COOKIE_NAME)?.value;
+  const authed = await isSessionValid(session);
 
   if (!authed) {
     const url = request.nextUrl.clone();
