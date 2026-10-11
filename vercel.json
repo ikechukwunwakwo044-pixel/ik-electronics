@@ -1,0 +1,12 @@
+{
+  "projects": {
+    "ik-electronics": {
+      "framework": "nextjs",
+      "rootDirectory": "."
+    },
+    "ik-electronics-admin": {
+      "framework": "nextjs",
+      "rootDirectory": "admin"
+    }
+  }
+}
