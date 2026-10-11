@@ -1,6 +1,8 @@
 import { redirect } from "next/navigation";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { createClient } from "@/lib/supabase/server";
+import { signOut } from "@/app/login/actions";
 
 export const metadata = {
   title: "Account",
@@ -34,6 +36,11 @@ export default async function AccountPage() {
           <p className="text-muted-foreground">
             Order history and saved addresses will appear here as checkout is completed.
           </p>
+          <form action={signOut} className="pt-2">
+            <Button type="submit" variant="outline" size="sm">
+              Sign out
+            </Button>
+          </form>
         </CardContent>
       </Card>
     </main>
